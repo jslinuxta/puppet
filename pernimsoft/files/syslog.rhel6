@@ -1,0 +1,23 @@
+/var/log/cron
+{
+    weekly
+    dateext
+    create 0640 root nimsoft
+    rotate 4
+}
+/var/log/messages
+{
+    weekly
+    dateext
+    create 0640 root nimsoft
+    rotate 4
+}
+/var/log/secure
+/var/log/maillog
+/var/log/spooler
+{
+    sharedscripts
+    postrotate
+	/bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true
+    endscript
+}
